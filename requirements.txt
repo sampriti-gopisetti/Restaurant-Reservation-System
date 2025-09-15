@@ -1,0 +1,10 @@
+# PHP requirements
+php
+
+# Database requirements
+mysql-connector (MySQL server required)
+
+# No external Python dependencies are required for this project.
+# All frontend libraries (Bootstrap, jQuery, etc.) are included locally in the project.
+
+# If you use Python scripts for DB setup or testing, add them here.
