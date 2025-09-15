@@ -42,8 +42,5 @@ EasyDine is a web-based restaurant reservation system that allows users to sign 
 - Template: [Restoran - Bootstrap Restaurant Template](https://htmlcodex.com/bootstrap-restaurant-template) by HTML Codex
 - See `LICENSE.txt` for template license details.
 
-## Screenshots
-_Add screenshots of your app here._
-
 ## License
 See `LICENSE.txt` for details.
