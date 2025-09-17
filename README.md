@@ -10,13 +10,14 @@ EasyDine is a web-based restaurant reservation system that allows users to sign 
 - Animated UI elements and carousels
 
 ## Project Structure
-- `index.html` / `index.php`: Home page/dashboard
+- `index.php`: Home page/dashboard
 - `login.php`, `signup.php`, `logout.php`: User authentication
 - `menu.php`: Restaurant menu
-- `reserve.php`, `final.html`: Table reservation
+- `reserve.php`, `final.php`: Table reservation
 - `about.php`, `service.php`: Informational pages
 - `connection.php`: Database connection
 - `functions.php`: Common PHP functions (e.g., authentication)
+- `config.php`: URL helper functions used to build dynamic paths
 - `css/`, `js/`, `img/`, `lib/`: Static assets and libraries
 
 ## Setup Instructions
@@ -31,6 +32,25 @@ EasyDine is a web-based restaurant reservation system that allows users to sign 
    - Place the project folder in your web server's root directory (e.g., `htdocs` for XAMPP).
    - Start Apache and MySQL services.
    - Access the app at `http://localhost/EasyDine/`.
+
+4. Optional: If hosting behind a reverse proxy (e.g., on Render, Nginx, Cloudflare), ensure the proxy forwards standard headers (`X-Forwarded-Proto`, `X-Forwarded-Host`, `X-Forwarded-Port`) so URL generation detects the correct scheme and host.
+
+## Dynamic URLs and Assets
+To avoid hardcoded paths and make the app portable across environments and subdirectories, all pages use helpers from `config.php`:
+
+- base_url(path = ''): Returns the absolute base URL for the app with an optional path appended.
+- asset(path): Returns a URL for static assets inside `css/`, `js/`, `img/`, `lib/`.
+- url(path): Returns a URL for internal page links (e.g., `login.php`, `menu.php`).
+
+Examples inside PHP:
+
+- `<link href="<?php echo asset('css/style.css'); ?>" rel="stylesheet">`
+- `<img src="<?php echo asset('img/hero.png'); ?>" alt="">`
+- `<a href="<?php echo url('menu.php'); ?>">Reserve A Table</a>`
+
+Notes:
+- The helpers account for HTTPS and common proxy headers.
+- Use these helpers for all assets (`href`/`src`) and internal links to prevent broken paths when deploying under a subfolder.
 
 ## Dependencies
 - PHP >= 7.x

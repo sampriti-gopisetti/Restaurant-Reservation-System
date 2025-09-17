@@ -1,41 +1,11 @@
 <?php
 session_start();
+include("connection.php");
+include("functions.php");
+include("config.php");
+include("reserve.php");
 
-    include("connection.php");
-    include("functions.php");
-    include("config.php");
-
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
-	//something was posted
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	if(!empty($username) && !empty($password) && !is_numeric($username))
-	{
-		//read from database
-		$query = "select * from users where username = '$username' limit 1";
-		$result = mysqli_query($con, $query);
-		
-		if($result)
-		{
-			if($result && mysqli_num_rows($result) >0)
-			{
-				$user_data = mysqli_fetch_assoc($result);
-				if($user_data['password'] === $password)
-				{
-					$_SESSION['user_id']=$user_data['user_id'];
-                    header("Location: " . url('index.php'));
-					die;
-				}
-			}
-		}
-		echo "wrong username or password";
-	}
-	else
-	{
-		echo "wrong username or password";
-	}
-}
+$user_data=check_login($con);
 ?>
 
 
@@ -109,101 +79,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Login</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Reserve A Table</h1>
 					<br><br>
                     <nav aria-label="breadcrumb">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
-
-h4 {
-	color: #f1f1f1;
-}
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #FF9A35;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
+					<meta name="viewport" content="width=device-width, initial-scale=1">
                     </nav>
                 </div>
             </div>
         </div>
-</style>
 </head>
  <!-- Navbar & Hero End -->
-		
 		<!--Login Start-->
 		<body>
 		<div class="container">
-			<form method="post">
-			<div class="container">
-				<label for="uname"><b>Username</b></label>
-				<input id="text" type="text" placeholder="Enter Username" name="username" required>
-				<label id="text" for="psw"><b>Password</b></label>
-				<input id="text" type="password" placeholder="Enter Password" name="password" required> 
-				<button id="button" type="submit" class="btn btn-primary py-2 px-2">Login</button>
-				<label>
-				<br><br>
-				<h4>Don't have an account?</h4>
-                <a href="<?php echo url('signup.php'); ?>" class="btn btn-primary py-2 px-2">SignUp</a>
-				<h6><br></h6>
-				</label>
-			</div>
-			</form>
+			<h4>Table Reserved</h4><br><br>
+			<h4>Thank you for choosing EasyDine</h4>
 		</div>
 		</body>
 		<!--Login End-->

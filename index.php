@@ -1,42 +1,12 @@
 <?php
 session_start();
+include("connection.php");
+include("functions.php");
+include("config.php");
 
-    include("connection.php");
-    include("functions.php");
-    include("config.php");
-
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
-	//something was posted
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	if(!empty($username) && !empty($password) && !is_numeric($username))
-	{
-		//read from database
-		$query = "select * from users where username = '$username' limit 1";
-		$result = mysqli_query($con, $query);
-		
-		if($result)
-		{
-			if($result && mysqli_num_rows($result) >0)
-			{
-				$user_data = mysqli_fetch_assoc($result);
-				if($user_data['password'] === $password)
-				{
-					$_SESSION['user_id']=$user_data['user_id'];
-                    header("Location: " . url('index.php'));
-					die;
-				}
-			}
-		}
-		echo "wrong username or password";
-	}
-	else
-	{
-		echo "wrong username or password";
-	}
-}
+$user_data=check_login($con);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -47,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <title>EasyDine</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="" name="description"> 
 
     <!-- Favicon -->
     <link href="<?php echo asset('img/favicon.ico'); ?>" rel="icon">
@@ -85,19 +55,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
 
         <!-- Navbar & Hero Start -->
-		<div class="container-xxl position-relative p-0">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
                     <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>EasyDine</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-						<a href="<?php echo url('login.php'); ?>" class="nav-item nav-link active">Login</a>
-                        <a href="<?php echo url('index.php'); ?>" class="nav-item nav-link">Home</a>
+						<a href="<?php echo url('login.php'); ?>" class="nav-item nav-link">Login</a>
+                        <a href="<?php echo url('index.php'); ?>" class="nav-item nav-link active">Home</a>
                         <a href="<?php echo url('about.php'); ?>" class="nav-item nav-link">About</a>
                         <a href="<?php echo url('service.php'); ?>" class="nav-item nav-link">Service</a>
                         <a href="<?php echo url('menu.php'); ?>" class="nav-item nav-link">Menu</a>
@@ -108,107 +77,26 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Login</h1>
-					<br><br>
-                    <nav aria-label="breadcrumb">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
-
-h4 {
-	color: #f1f1f1;
-}
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #FF9A35;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
-                    </nav>
+                <div class="container my-5 py-5">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="display-3 text-white animated slideInLeft">Discover the best<br>Dining Experience</h1>
+                            <p class="text-white animated slideInLeft mb-4 pb-2">Find the best restaurants around you to book a table & <br> Experience new flavours</p>
+                            <a href="<?php echo url('menu.php'); ?>" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Reserve A Table</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                            <img class="img-fluid" src="<?php echo asset('img/hero.png'); ?>" alt="">
+							
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-</style>
-</head>
- <!-- Navbar & Hero End -->
-		
-		<!--Login Start-->
-		<body>
-		<div class="container">
-			<form method="post">
-			<div class="container">
-				<label for="uname"><b>Username</b></label>
-				<input id="text" type="text" placeholder="Enter Username" name="username" required>
-				<label id="text" for="psw"><b>Password</b></label>
-				<input id="text" type="password" placeholder="Enter Password" name="password" required> 
-				<button id="button" type="submit" class="btn btn-primary py-2 px-2">Login</button>
-				<label>
-				<br><br>
-				<h4>Don't have an account?</h4>
-                <a href="<?php echo url('signup.php'); ?>" class="btn btn-primary py-2 px-2">SignUp</a>
-				<h6><br></h6>
-				</label>
-			</div>
-			</form>
-		</div>
-		</body>
-		<!--Login End-->
+        <!-- Navbar & Hero End -->
         
+
         <!-- Footer Start -->
+
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
@@ -224,6 +112,9 @@ span.psw {
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="<?php echo url('index.php'); ?>">Home</a>
+                                <!--<a href="">Cookies</a>
+                                <a href="">Help</a>
+								<a href="">FAQs</a>-->
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 session_start();
 include("connection.php");
 include("functions.php");
+include("config.php");
 
 $user_data=check_login($con);
 ?>
@@ -17,7 +18,7 @@ $user_data=check_login($con);
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="<?php echo asset('img/favicon.ico'); ?>" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,15 +30,15 @@ $user_data=check_login($con);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="<?php echo asset('lib/animate/animate.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo asset('lib/owlcarousel/assets/owl.carousel.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'); ?>" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo asset('css/bootstrap.min.css'); ?>" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?php echo asset('css/style.css'); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -62,14 +63,14 @@ $user_data=check_login($con);
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-						<a href="login.php" class="nav-item nav-link">Login</a>
-                        <a href="index.php" class="nav-item nav-link">Home</a>
-                        <a href="about.php" class="nav-item nav-link active">About</a>
-                        <a href="service.php" class="nav-item nav-link">Service</a>
-                        <a href="menu.php" class="nav-item nav-link">Menu</a>
-						<a href="logout.php" class="nav-item nav-link">Logout</a>
+                        <a href="<?php echo url('login.php'); ?>" class="nav-item nav-link">Login</a>
+                        <a href="<?php echo url('index.php'); ?>" class="nav-item nav-link">Home</a>
+                        <a href="<?php echo url('about.php'); ?>" class="nav-item nav-link active">About</a>
+                        <a href="<?php echo url('service.php'); ?>" class="nav-item nav-link">Service</a>
+                        <a href="<?php echo url('menu.php'); ?>" class="nav-item nav-link">Menu</a>
+                        <a href="<?php echo url('logout.php'); ?>" class="nav-item nav-link">Logout</a>
                     </div>
-                    <a href="menu.php" class="btn btn-primary py-2 px-4">Reserve A Table</a>
+                    <a href="<?php echo url('menu.php'); ?>" class="btn btn-primary py-2 px-4">Reserve A Table</a>
                 </div>
             </nav>
 			<div class="container-xxl py-5 bg-dark hero-header mb-5">
@@ -94,7 +95,7 @@ $user_data=check_login($con);
                             <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Reserve A Table</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img class="img-fluid" src="img/hero.png" alt="">
+                                <img class="img-fluid" src="<?php echo asset('img/hero.png'); ?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -111,16 +112,16 @@ $user_data=check_login($con);
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-1.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="<?php echo asset('img/about-1.jpg'); ?>">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about-2.jpg" style="margin-top: 25%;">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="<?php echo asset('img/about-2.jpg'); ?>" style="margin-top: 25%;">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="<?php echo asset('img/about-3.jpg'); ?>">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="<?php echo asset('img/about-4.jpg'); ?>">
                             </div>
                         </div>
                     </div>
@@ -171,7 +172,7 @@ $user_data=check_login($con);
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-1.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo asset('img/team-1.jpg'); ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -185,7 +186,7 @@ $user_data=check_login($con);
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo asset('img/team-2.jpg'); ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -199,7 +200,7 @@ $user_data=check_login($con);
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo asset('img/team-3.jpg'); ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -213,7 +214,7 @@ $user_data=check_login($con);
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo asset('img/team-4.jpg'); ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -286,7 +287,7 @@ $user_data=check_login($con);
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="index.php">Home</a>
+                                <a href="<?php echo url('index.php'); ?>">Home</a>
                                 <!--<a href="">Cookies</a>
                                 <a href="">Help</a>
 								<a href="">FAQs</a>-->
@@ -306,17 +307,17 @@ $user_data=check_login($con);
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?php echo asset('lib/wow/wow.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/easing/easing.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/waypoints/waypoints.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/counterup/counterup.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/owlcarousel/owl.carousel.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/moment.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/moment-timezone.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js'); ?>"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="<?php echo asset('js/main.js'); ?>"></script>
 </body>
 
 </html>

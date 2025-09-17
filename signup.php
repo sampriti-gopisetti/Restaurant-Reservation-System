@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-	include("connection.php");
-	include("functions.php");
+    include("connection.php");
+    include("functions.php");
+    include("config.php");
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
@@ -38,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="<?php echo asset('img/favicon.ico'); ?>" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,15 +51,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="<?php echo asset('lib/animate/animate.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo asset('lib/owlcarousel/assets/owl.carousel.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'); ?>" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo asset('css/bootstrap.min.css'); ?>" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?php echo asset('css/style.css'); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -84,14 +85,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-						<a href="login.php" class="nav-item nav-link active">Login</a>
-                        <a href="index.php" class="nav-item nav-link">Home</a>
-                        <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="service.php" class="nav-item nav-link">Service</a>
-                        <a href="menu.php" class="nav-item nav-link">Menu</a>
-						<a href="logout.php" class="nav-item nav-link">Logout</a>
+						<a href="<?php echo url('login.php'); ?>" class="nav-item nav-link active">Login</a>
+                        <a href="<?php echo url('index.php'); ?>" class="nav-item nav-link">Home</a>
+                        <a href="<?php echo url('about.php'); ?>" class="nav-item nav-link">About</a>
+                        <a href="<?php echo url('service.php'); ?>" class="nav-item nav-link">Service</a>
+                        <a href="<?php echo url('menu.php'); ?>" class="nav-item nav-link">Menu</a>
+						<a href="<?php echo url('logout.php'); ?>" class="nav-item nav-link">Logout</a>
                     </div>
-                    <a href="menu.php" class="btn btn-primary py-2 px-4">Reserve A Table</a>
+                    <a href="<?php echo url('menu.php'); ?>" class="btn btn-primary py-2 px-4">Reserve A Table</a>
                 </div>
             </nav>
 
@@ -187,7 +188,7 @@ span.psw {
 				<label>
 				<br>
 				<h4>Already have an account?</h4>
-				<a href="login.php" class="btn btn-primary py-2 px-2">Login</a>
+                <a href="<?php echo url('login.php'); ?>" class="btn btn-primary py-2 px-2">Login</a>
 				<h6><br></h6>
 				</label>
 			</div>
@@ -211,7 +212,7 @@ span.psw {
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="">Home</a>
+                                <a href="<?php echo url('index.php'); ?>">Home</a>
                             </div>
                         </div>
                     </div>
@@ -228,17 +229,17 @@ span.psw {
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?php echo asset('lib/wow/wow.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/easing/easing.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/waypoints/waypoints.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/counterup/counterup.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/owlcarousel/owl.carousel.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/moment.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/moment-timezone.min.js'); ?>"></script>
+    <script src="<?php echo asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js'); ?>"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="<?php echo asset('js/main.js'); ?>"></script>
 </body>
 
 </html>
